@@ -1,0 +1,69 @@
+﻿@model Recepies.Models.Ingredient
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ingredient</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Calories)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Calories)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Protein)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Protein)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sugar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sugar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Iron)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Iron)
+        </dd>
+
+    </dl>
+</div>
+@{var sessionVar = (Recepies.Models.User)HttpContext.Current.Session["user"];
+    if (sessionVar.IsManager)
+    {
+<p>
+   
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |                                                            
+    @Html.ActionLink("Back to List", "Index")
+</p>
+    }
+    else
+    {
+        @Html.ActionLink("Back to List", "Index")
+    }
+}
+ 

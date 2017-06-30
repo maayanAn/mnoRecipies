@@ -1,0 +1,75 @@
+﻿@model Dictionary<double, List<Recepies.Models.Ingredient>>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+<div>
+    @using (Html.BeginForm("Search", "Ingredients", FormMethod.Get))
+    {
+        <span>Calories: From </span> @Html.TextBox("caloriesFrom", null, new { @type = "number", step = "0.01" }) <span> To </span> @Html.TextBox("caloriesTo", null, new { @type = "number", step = "0.01" })
+        <input type="submit" value="Search" />
+    }
+</div>
+<table class="table">
+    @foreach (var item in Model)
+    {
+        <tr><td></td></tr>
+        <tr>
+            <td><b>Calories: @Html.DisplayFor(modelItem => item.Key)</b></td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model[0][0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0][0].Calories)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0][0].Protein)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0][0].sugar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0][0].Iron)
+            </th>
+            <th></th>
+        </tr>
+
+        foreach (var indredient in item.Value)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => indredient.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => indredient.Calories)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => indredient.Protein)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => indredient.sugar)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => indredient.Iron)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = indredient.Id })
+
+                    @{var sessionVar = (Recepies.Models.User)HttpContext.Current.Session["user"];
+                        if (sessionVar.IsManager)
+                        {
+                            <span>|</span>
+                            @Html.ActionLink("Edit", "Edit", new { id = indredient.Id })
+                            <span>|</span>
+            @Html.ActionLink("Delete", "Delete", new { id = indredient.Id });
+                    }}
+                </td>
+            </tr>
+                            }
+                        }
+</table>

@@ -1,0 +1,51 @@
+﻿@model Dictionary<Recepies.Models.User, int>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+<div>
+    @using (Html.BeginForm("Search", "Users", FormMethod.Get))
+    {
+        <span>Name: </span> @Html.TextBox("name")
+        <span>Is manager: </span> @Html.CheckBox("isManager")
+        <span>Minimum recipies: </span> @Html.TextBox("minRecipies", null, new { @type = "number", step = "1" })
+        <input type="submit" value="Search" />
+    }
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Keys.ElementAt(0).FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Keys.ElementAt(0).IsManager)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Keys.ElementAt(0).Recipies)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Key.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Key.IsManager)
+        </td>
+        <td>
+            @Html.ActionLink(item.Value.ToString(), "Search", "Recipies", new { user = item.Key.FullName }, null)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Key.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Key.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Key.Id })
+        </td>
+    </tr>
+}
+
+</table>

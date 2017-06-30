@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-sm-8" id="aboutText">
+       
+    </div>
+    <aside class="col-sm-offset-8 aside-about">
+        
+        <div>
+            <canvas id="titleCanvas" width="380" height="35" class="canvas-about"></canvas>
+
+            <script>
+                var c = document.getElementById("titleCanvas");
+                var ctx = c.getContext("2d");
+                ctx.font = "20px Arial";
+                ctx.fillStyle = "#666666";
+                ctx.fillText("All new kitchen tricks!", 0, 30);
+            </script>
+
+            <iframe width="390" height="315" src="https://www.youtube.com/embed/23qMd90xcaY" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div>
+            <canvas id="Canvas" width="388" height="15" class="canvas-about">
+            </canvas>
+
+            <script>
+                var c = document.getElementById("Canvas");
+                var ctx = c.getContext("2d");
+
+                // Create gradient
+                var grd = ctx.createRadialGradient(183, 50, 108, 198, 60, 205);
+                grd.addColorStop(0, "grey");
+                grd.addColorStop(1, "white");
+
+                // Fill with gradient
+                ctx.fillStyle = grd;
+                ctx.fillRect(0, 5, 388, 5);
+            </script>
+        </div>
+
+         <div>
+             <div>
+                 <canvas id="linksCanvas" width="380" height="25" class="canvas-about"></canvas>
+
+                 <script>
+                var c = document.getElementById("linksCanvas");
+                var ctx = c.getContext("2d");
+                ctx.font = "20px Arial";
+                ctx.fillStyle = "#666666";
+                ctx.fillText("Some useful links:",0,20);
+                 </script>
+             </div>  
+
+            <a href="http://www.bbc.co.uk/food/recipes">BBC recipes</a><br />
+            <a href="http://www.mako.co.il/food-recipes/">Mako recipes</a><br />
+            <a href="http://www.countryliving.com/dinner-recipes/">Country living recipes</a><br />
+            <a href="http://www.countryliving.com/dinner-recipes/">Don't be lazy, serch on google!</a>
+        </div>
+
+        <div>
+            <canvas id="CanvasLine" width="388" height="15" class="canvas-about">
+            </canvas>
+
+            <script>
+                var c = document.getElementById("CanvasLine");
+                var ctx = c.getContext("2d");
+
+                // Create gradient
+                var grd = ctx.createRadialGradient(183, 50, 108, 198, 60, 205);
+                grd.addColorStop(0, "grey");
+                grd.addColorStop(1, "white");
+
+                // Fill with gradient
+                ctx.fillStyle = grd;
+                ctx.fillRect(0, 5, 388, 5);
+            </script>
+        </div>
+
+        <div>
+            <img id="bonappetit" width="300" height="277" hidden="hidden"
+                 src="~/pic1.jpg" alt="Bon appetit">
+
+            <canvas id="myCanvas" width="380" height="130"
+                    class="canvas-about">
+            </canvas>
+
+            <script>
+                window.onload = function () {
+                    var canvas = document.getElementById("myCanvas");
+                    var ctx = canvas.getContext("2d");
+                    var img = document.getElementById("bonappetit");
+                    ctx.drawImage(img, 23, 10);
+                };
+            </script>
+        </div>
+    </aside>
+</div>
+<script>
+    $("#aboutText").ready(function () {
+        $.ajax({
+            url: "\\AboutSite\\GetAboutSiteText",
+            success: function (result) {
+                $("#aboutText").html(result);
+            }
+        });
+    });
+</script>

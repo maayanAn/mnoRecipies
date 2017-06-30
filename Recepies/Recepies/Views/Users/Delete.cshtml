@@ -1,0 +1,62 @@
+﻿@model Recepies.Models.User
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsManager)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsManager)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> 
+            @{var sessionVar = (Recepies.Models.User)HttpContext.Current.Session["user"];
+                if (sessionVar.IsManager)
+                {
+                    <p>
+                        @Html.ActionLink("Back to List", "Index")
+                    </p>
+                }
+                else
+                {
+                    <p>
+                        @Html.ActionLink("Back to Details", "Details", new { id = sessionVar.Id })
+                    </p>
+                    }
+                }
+</div>
+    }
+</div>

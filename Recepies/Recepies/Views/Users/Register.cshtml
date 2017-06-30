@@ -1,0 +1,77 @@
+﻿@model Recepies.Models.User
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>User</h4>
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" hidden="hidden">
+            @Html.LabelFor(model => model.IsManager, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.CheckBoxFor(model => model.IsManager)
+                    @Html.ValidationMessageFor(model => model.IsManager, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Register" class="btn btn-default" /><span class="user-error-message">@ViewBag.ErrMsg</span>
+            </div>
+        </div>
+
+            <div>
+                @Html.ActionLink("Back to Home page", "Login")
+            </div>
+        <br />
+        <div>
+            <a id="terms-action">See terms & conditions</a>
+            <div id="terms" class="terms">
+                <div class="newspaper">
+                    <p> This template legal document was produced and published by SEQ Legal LLP.</p>
+                    <p> We control the copyright in this template, and you may only use this template in accordance with the licensing provisions in our terms and conditions. Those licensing provisions include an obligation to retain the SEQ Legal credit incorporated into the template.</p>
+                    <p>You will need to edit this template before use.Guidance notes to help you do so are set out at the end of the template. During the editing process, you should delete those guidance notes and this cover sheet. Square brackets in the body of the document indicate areas that require editorial attention. "ORs" in the body of the document indicate alternative provisions. By the end of the editing process, there should be no square brackets left in the body of the document, and only one alternative from each set of alternatives should remain.Elements may be specified as optional in the accompanying notes, but that does not mean that they are in all cases removable.Depending upon the circumstances, an optional element may be: (i)required by law; or(ii) necessary to ensure that the document is internally consistent.</p>
+                    <p>If you have any doubts about the editing or use of this template, you should seek professional legal advice.<p />
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        $("#terms-action").click(function () {
+            $("#terms").animate({
+                height: 'toggle'
+            });
+        });
+    });
+</script>

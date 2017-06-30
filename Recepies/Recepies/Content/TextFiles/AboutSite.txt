@@ -1,0 +1,9 @@
+﻿ <h2>About</h2>
+        <h3>Delicious Mix-Up</h3>
+        <p>As a global brand, Allrecipes’ team members represent a broad range of cultures, interests and backgrounds, which makes work totally interesting and inspires amazing potluck lunches.</p>
+        <br />
+        <h3>Tools for Success</h3>
+        <p>While often considered a food brand, Allrecipes’ real passion is digital technology.  Our team members share decades of experience from being at the forefront of innovation — creating and putting to use the latest tools, technologies, and devices to make our website sizzle with recipes and fun food facts.</p>
+        <br />
+        <h3>Work-Life Balance</h3>
+        <p>As a group, we share an affinity for eating and working. However, we don’t want work to eat us up. Allrecipes provides a work environment that will energize you during the day to solve complex problems, but keep your nights and weekends open so you may pursue your non-work passions.</p>
